@@ -1,7 +1,8 @@
+from time import time
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-from numba import jit, njit, prange, set_num_threads
+# from numba import jit, njit, prange, set_num_threads
 
 """
 
@@ -74,8 +75,49 @@ class Particles:
                 _time: float. the simulation time 
 
         """
-        # TODO:
+        #build array shape
+        self.nparticles = N 
+        self._time = 0
+        self._masses = np.ones((N,1))
+        self._positions = np.zeros((N,3))
+        self._velocities = np.zeros((N,3))
+        self._accelerations = np.zeros((N,3))
+        self._tags = np.linspace(1,N,N)
         return
+
+    #getter
+    def get_time(self):
+        return self._time
+    def get_masses(self):
+        return self._masses
+    def get_positions(self):
+        return self._positions
+    def get_velocities(self):
+        return self._velocities 
+    def get_accelerations(self):
+        return self._accelerations
+    def get_tags(self): 
+        return self._tags
+    #setter
+    def set_time(self,time):
+        self._time = time
+        return
+    def set_masses(self,masses):
+        self._masses = masses
+        return
+    def set_positions(self,positions):
+        self._positions = positions
+        return
+    def set_velocities(self,velocities):
+        self._velocities = velocities
+        return
+    def set_accelerations(self,accelerations):
+        self._accelerations = accelerations
+        return
+    def set_tags(self,tags): 
+        self._tags = tags
+        return
+
 
     def output(self,fn, time):
         """
